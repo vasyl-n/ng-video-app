@@ -1,3 +1,13 @@
-  <div *ngFor="let tr of transcripts">
-    {{tr.snippet}}
+  <div class="transcripts">
+
+    <div *ngFor="let tr of transcripts">
+      <div class="transcript">
+        <div class="speaker">
+          {{tr.speaker}}
+        </div>
+        <div class="text">
+          {{tr.snippet}}
+        </div>
+      </div>
+    </div>
   </div>

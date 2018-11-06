@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import data from '../data'
 import dataService from '../data.service'
+import { Transcript } from '../types'
 
 @Component({
   selector: 'app-content-container',
@@ -8,19 +9,20 @@ import dataService from '../data.service'
   styleUrls: ['./content-container.component.css']
 })
 export class ContentContainerComponent implements OnInit {
-  transcripts: [];
-  videoId: string;
+  transcripts: Transcript[]
+  videoId: string
 
   constructor(private dataService: dataService) { 
   }
 
   getTranscripts(id: string): void {
-    this.transcripts = this.dataService.getTranscripts(id);
+    this.dataService.getTranscripts(id).subscribe(res => {
+      this.transcripts = res
+   })
   }
 
   ngOnInit() {
     this.videoId = window.location.search.split('=')[1]
     this.getTranscripts(this.videoId)
-    console.log(this.transcripts)
   }
 }
