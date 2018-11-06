@@ -8,7 +8,7 @@ export class DataService {
 
   constructor() { }
 
-  getTranscripts() {
+  getTranscripts(id: string) {
     return data;
   }
 }

@@ -9,17 +9,18 @@ import dataService from '../data.service'
 })
 export class ContentContainerComponent implements OnInit {
   transcripts: [];
+  videoId: string;
 
   constructor(private dataService: dataService) { 
   }
 
-  getTranscripts(): void {
-    this.transcripts = this.dataService.getTranscripts();
+  getTranscripts(id: string): void {
+    this.transcripts = this.dataService.getTranscripts(id);
   }
 
   ngOnInit() {
-    let id = window.location.search.split('=')[1]
-    this.getTranscripts()
+    this.videoId = window.location.search.split('=')[1]
+    this.getTranscripts(this.videoId)
     console.log(this.transcripts)
   }
 }
