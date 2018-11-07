@@ -2,7 +2,7 @@
 
     <div *ngFor="let tr of transcripts">
       <div class="transcript">
-        <div class="speaker">
+        <div [ngClass]="{'speaker': true, 'hidden' : tr.hideSpeakerName}">
           {{tr.speaker}}
         </div>
         <div class="text">

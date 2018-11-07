@@ -17,8 +17,22 @@ export class ContentContainerComponent implements OnInit {
 
   getTranscripts(id: string): void {
     this.dataService.getTranscripts(id).subscribe(res => {
+      res.sort((a, b) => a.time - b.time)
+      this.combineUtterances(res)
+
       this.transcripts = res
    })
+  }
+
+  combineUtterances(transcripts: Transcript[]): Transcript[] {
+    transcripts.forEach((el, ind) => {
+      let prevUtterance = transcripts[ind - 1]
+
+      if ( prevUtterance && el.speaker === prevUtterance.speaker ) {
+        el.hideSpeakerName = true
+      }
+    })
+    return transcripts
   }
 
   ngOnInit() {
