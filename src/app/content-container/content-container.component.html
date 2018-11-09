@@ -1,5 +1,6 @@
 <div class="content-container">
   <app-header></app-header>
-  <app-video-player [id]=videoId></app-video-player>
+  <app-video-player *ngIf="show; else elseBlock" [id]=videoId></app-video-player>
+  <ng-template #elseBlock ><p class="error-message">Error. Can not load this video</p></ng-template>
   <app-transcript [transcripts]=transcripts></app-transcript>
 </div>

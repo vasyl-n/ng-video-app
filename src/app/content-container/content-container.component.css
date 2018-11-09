@@ -1,3 +1,16 @@
 .content-container {
   width: 600px;
 }
+@media only screen and (max-width: 600px) {
+  .content-container {
+    width: 300px;
+  }
+}
+
+
+.error-message {
+  padding: 20px;
+  color: red;
+  margin: 40px;
+  border: 1px solid red;
+}

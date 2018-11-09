@@ -11,15 +11,19 @@ import { Transcript } from '../types'
 export class ContentContainerComponent implements OnInit {
   transcripts: Transcript[]
   videoId: string
+  show: boolean;
 
   constructor(private dataService: dataService) { 
   }
 
   getTranscripts(id: string): void {
+    if ( id ) {
+      this.show = true
+    }
+
     this.dataService.getTranscripts(id).subscribe(res => {
       res.sort((a, b) => a.time - b.time)
       this.combineUtterances(res)
-
       this.transcripts = res
    })
   }
