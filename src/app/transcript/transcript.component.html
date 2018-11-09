@@ -4,10 +4,8 @@
         <div class="speaker">
           {{tr.speaker}}
         </div>
-        <div class="test" *ngFor="let tr of tr.utterances">
-          <div class="text">
+        <div class="text" *ngFor="let tr of tr.utterances">
             {{tr.snippet}}
-          </div>
         </div>
       </div>
       <div class="circle"></div>

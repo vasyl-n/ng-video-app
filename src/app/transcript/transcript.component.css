@@ -3,10 +3,7 @@
 }
 
 .transcript {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-  align-items: flex-end;
+  position: relative;
 }
 
 .content {
@@ -22,6 +19,7 @@
   color: #333333;
   line-height: 20px;
   margin: 1px;
+  margin-left: 30px;
 }
 
 .speaker {
@@ -29,6 +27,7 @@
   color: #333333;
   line-height: 16px;
   padding: 7px 0 0 7px;
+  margin-left: 30px;
 }
 
 .circle {
@@ -37,6 +36,8 @@
   border-radius: 100%;
   margin: 8px 8px 8px 0;
   background-color: #00A7D1;
+  position: absolute;
+  bottom: 0px;
 }
 
 .transcript:nth-child(odd) .circle {
