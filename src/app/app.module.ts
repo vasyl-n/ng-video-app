@@ -7,7 +7,7 @@ import { VideoPlayerComponent } from './video-player/video-player.component';
 import { ContentContainerComponent } from './content-container/content-container.component';
 import { HeaderComponent } from './header/header.component';
 import { TranscriptComponent } from './transcript/transcript.component';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HttpClient }    from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,11 +18,11 @@ import { HttpClientModule }    from '@angular/common/http';
     TranscriptComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpClientModule, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

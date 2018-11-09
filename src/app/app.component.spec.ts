@@ -1,6 +1,10 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { ContentContainerComponent } from './content-container/content-container.component';
+import { HeaderComponent } from './header/header.component';
+import { TranscriptComponent } from './transcript/transcript.component';
+import { VideoPlayerComponent } from './video-player/video-player.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,7 +13,11 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        ContentContainerComponent,
+        HeaderComponent,
+        TranscriptComponent,
+        VideoPlayerComponent
       ],
     }).compileComponents();
   }));

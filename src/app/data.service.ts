@@ -11,7 +11,7 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getTranscripts(id: string): Observable<Transcript[]> {
+  getTranscripts(id: string): Observable<Object> {
     return this.http.get(`https://static.chorus.ai/api/${id}.json`)
   }
 }

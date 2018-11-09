@@ -12,7 +12,6 @@ export class ContentContainerComponent implements OnInit {
   transcripts: CombinedTranscript[]
   videoId: string
   show: boolean = true
-  error: any;
 
   constructor(private dataService: dataService) { 
   }
