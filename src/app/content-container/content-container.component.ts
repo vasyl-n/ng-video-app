@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import data from '../data'
 import dataService from '../data.service'
-import { Transcript } from '../types'
+import { Transcript, CombinedTranscript, Utterance } from '../types'
 
 @Component({
   selector: 'app-content-container',
@@ -9,7 +9,7 @@ import { Transcript } from '../types'
   styleUrls: ['./content-container.component.css']
 })
 export class ContentContainerComponent implements OnInit {
-  transcripts: Transcript[]
+  transcripts: CombinedTranscript[]
   videoId: string
   show: boolean;
 
@@ -23,20 +23,35 @@ export class ContentContainerComponent implements OnInit {
 
     this.dataService.getTranscripts(id).subscribe(res => {
       res.sort((a, b) => a.time - b.time)
-      this.combineUtterances(res)
-      this.transcripts = res
+      const combined = this.combineUtterances(res)
+      this.transcripts = combined
    })
   }
 
-  combineUtterances(transcripts: Transcript[]): Transcript[] {
+  combineUtterances(transcripts: Transcript[]): CombinedTranscript[] {
+    let result: CombinedTranscript[] = []
+    var resultInd: number = 0
     transcripts.forEach((el, ind) => {
-      let prevUtterance = transcripts[ind - 1]
+      let prevSpeaker: CombinedTranscript = result[resultInd - 1]
 
-      if ( prevUtterance && el.speaker === prevUtterance.speaker ) {
-        el.hideSpeakerName = true
+      let newUtterance: Utterance = {
+        snippet: el.snippet,
+        time: el.time,
+      }
+
+      if ( prevSpeaker && el.speaker === prevSpeaker.speaker ) {
+        prevSpeaker.utterances.push(newUtterance)
+      } else {
+        let newSpeaker: CombinedTranscript= {
+          speaker: el.speaker,
+          utterances: [],
+        }
+        newSpeaker.utterances.push(newUtterance)
+        result.push(newSpeaker)
+        resultInd++
       }
     })
-    return transcripts
+    return result
   }
 
   ngOnInit() {

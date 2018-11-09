@@ -1,4 +1,15 @@
+.transcripts {
+  margin-top: 30px;
+}
+
 .transcript {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.content {
   text-align: left;
 }
 
@@ -20,6 +31,14 @@
   padding: 7px 0 0 7px;
 }
 
-.hidden {
-  display: none;
+.circle {
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  margin: 8px 8px 8px 0;
+  background-color: #00A7D1;
+}
+
+.transcript:nth-child(odd) .circle {
+  background: #EE6EFF;
 }

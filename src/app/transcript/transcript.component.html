@@ -1,12 +1,15 @@
   <div class="transcripts">
-    <div *ngFor="let tr of transcripts">
-      <div class="transcript">
-        <div [ngClass]="{'speaker': true, 'hidden' : tr.hideSpeakerName}">
+    <div class="transcript" *ngFor="let tr of transcripts">
+      <div class="content">
+        <div class="speaker">
           {{tr.speaker}}
         </div>
-        <div class="text">
-          {{tr.snippet}}
+        <div class="test" *ngFor="let tr of tr.utterances">
+          <div class="text">
+            {{tr.snippet}}
+          </div>
         </div>
       </div>
+      <div class="circle"></div>
     </div>
   </div>
