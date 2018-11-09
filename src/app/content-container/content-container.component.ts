@@ -11,21 +11,23 @@ import { Transcript, CombinedTranscript, Utterance } from '../types'
 export class ContentContainerComponent implements OnInit {
   transcripts: CombinedTranscript[]
   videoId: string
-  show: boolean;
+  show: boolean = true
+  error: any;
 
   constructor(private dataService: dataService) { 
   }
 
   getTranscripts(id: string): void {
-    if ( id ) {
-      this.show = true
-    }
-
-    this.dataService.getTranscripts(id).subscribe(res => {
-      res.sort((a, b) => a.time - b.time)
-      const combined = this.combineUtterances(res)
-      this.transcripts = combined
-   })
+    this.dataService.getTranscripts(id).subscribe(
+      (res: Transcript[]) => {
+        res.sort((a, b) => a.time - b.time)
+        const combined: CombinedTranscript[] = this.combineUtterances(res)
+        this.transcripts = combined
+      },
+      (error) => {
+        this.show = false
+      }
+    )
   }
 
   combineUtterances(transcripts: Transcript[]): CombinedTranscript[] {
